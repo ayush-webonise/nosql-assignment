@@ -1,0 +1,101 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf460
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 Collection users:\
+                          \{\
+				user_id: <user_id>,\
+\
+				login_credentials:\
+							\{\
+								email_id: <user_email_id>\
+								password: <password>\
+							\},\
+\
+				details: \{\
+								name:\
+									\{\
+										first: <first_name>,\
+										last: <last_name>\
+									\},\
+				\
+								date_of_birth: <dd_mm_yyyy>,\
+\
+								contact_no: <contact_no>,\
+\
+								display_picture: <display_picture_url>\
+\
+						     \},\
+\
+			      role: \{\
+					type: <editor/ admin/ super_admin>,\
+\
+					can_update_posts: <yes/no>\
+\
+					can_delete_posts: <yes/no>\
+\
+			      		access_to_posts:\
+							[\
+								post_id, post_id,\'85\'85\
+							],\
+\
+			      		access_to_users:\
+							[\
+								user_id, user_id,\'85\'85\
+							]\
+\
+				\}\
+\
+			\}\
+\
+Collection posts:\
+			\{\
+				_id: <post_id>,\
+\
+				user_id: <user_id>,\
+\
+				when_posted: <time>,\
+\
+				heading: <post_heading>,\
+\
+				body: <post_body>,\
+\
+				tags: [<tag>,<tag>,\'85\'85..],\
+\
+				images: [\{image_url\},\'85..],\
+\
+				comments:\
+						[\
+							\{\
+								comment_body: <some_comment_by_user>,\
+								user_id: <user_id>,\
+								when_commented: <time_and_date>,\
+								replies:\
+									[\
+										\{\
+									             reply_body:<some_reply>, \
+   										  user_id: <user_id>, \
+										  timestamp: <time_and_date>\
+										\},\
+									]\
+							\},\
+\
+							\{\
+								comment_body: <some_comment_by_user>,\
+								user_id: <user_id>,\
+								when_commented: <time_and_date>,\
+								replies:\
+									[\
+										\{\
+									             reply_body:<some_reply>, \
+   										  user_id: <user_id>, \
+										  timestamp: <time_and_date>\
+										\},\
+									]\
+							\},\
+						]\
+			\}\
+}
