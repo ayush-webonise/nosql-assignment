@@ -1,0 +1,35 @@
+//delete a comment
+db.posts.update({"_id" : ObjectId("57ea8227b3ee130a01beaff7")}, {$pull : {comments : {user_id : ObjectId("57ea7ce1b3ee130a01beaff3")}}})
+
+//update comment's body
+db.posts.update( { "comments.user_id" : ObjectId("57ea7ce1b3ee130a01beaff3") }, {"$set" : { "comments.$.body" : "hey there, wassup !"}})
+
+//add a comment
+db.posts.update({ _id : ObjectId("57ea8227b3ee130a01beaff7")}, { $push : { comments : { user_id : ObjectId("57ea7830b3ee130a01beaff0"), body : "hey guys!!", replies : [], when_commented : new Date() } } } )
+
+//find number of comments on a particular post
+db.posts.findOne({_id :  ObjectId("57ea8227b3ee130a01beaff7")}).comments.length
+
+//posts having more than two comments
+db.posts.find({$where : "this.comments.length > 1"})
+
+db.posts.insert({ user_id : ObjectId("57ea7abdb3ee130a01beaff1"), when_posted : new Date(), heading : "Hey Mongo", body : "this is mongodb boy", tags : ["anotherpost", "follow"], image_url : ["www.google.com"] , comments : [ { user_id : ObjectId("57ea7ce1b3ee130a01beaff3"), body : "wassup", replies : [ { user_id : ObjectId("57ea7c4eb3ee130a01beaff2"), body : "nothing", timestamp : new Date() } ], when_commented : new Date(), } ] }
+
+ db.posts.insert({ user_id : ObjectId("57ea77bfb3ee130a01beafef"), when_posted : new Date(), heading : "Hello World", body : "this is post's body", tags : ["firstpost", "likeit"], image_url : ["www.google.com"] , comments : [ { user_id : ObjectId("57ea7ce1b3ee130a01beaff3"), body : "hey,how are you", replies : [ { user_id : ObjectId("57ea7c4eb3ee130a01beaff2"), body : "i'm fine", timestamp : new Date() } ], when_commented : new Date(), } ] } )
+
+
+
+
+db.users.insert( { login_credentials : { email_id : "ayush.mahajan@weboniselab.com", password : "ayushm" }, details : { name : { first : "ayush", last : "mahajan" }, date_of_birth : new Date(1995, 1, 31, 00, 00, 00), display_picture : "www.google.com", contact_no : 9503984610, }, role : { type : "user", can_update_post : false, can_delete_post : false, access_to_posts : [],access_to_users : [] }, } )
+
+
+db.users.insert( { login_credentials : { email_id : "abc@gmail.com", password : "abcd" }, details : { name : { first : "abc", last : "cba" }, date_of_birth : new Date(1994, 11, 21, 00, 00, 00), display_picture : "www.google.com", contact_no : 9992314785, }, role : { type : "user", can_update_post : false, can_delete_post : false, access_to_posts : [],access_to_users : [] }, } )
+
+> db.users.insert( { login_credentials : { email_id : "admin.mahajan@weboniselab.com", password : "admin" }, details : { name : { first : "admin", last : "mahajan" }, date_of_birth : new Date(1991, 11, 11, 00, 00, 00), display_picture : "www.google.com", contact_no : 9503989898, }, role : { type : "admin", can_update_post : true, can_delete_post : true, access_to_posts : [],access_to_users : [ObjectId("57ea77bfb3ee130a01beafef"), ObjectId("57ea7830b3ee130a01beaff0")] }, } )
+
+
+> db.users.insert( { login_credentials : { email_id : "abc.editor@weboniselab.com", password : "editor" }, details : { name : { first : "abc", last : "editor" }, date_of_birth : new Date(1992, 01, 01, 01, 00, 00), display_picture : "www.google.com", contact_no : 90976547964, }, role : { type : "editor", can_update_post : true, can_delete_post : false, access_to_posts : [],access_to_users : [ObjectId("57ea77bfb3ee130a01beafef")] }, } )
+
+> db.users.insert( { login_credentials : { email_id : "the.super_admin@gmail.com", password : "super_admin" }, details : { name : { first : "the", last : "super_admin" }, date_of_birth : new Date(1990, 08, 04, 10, 00, 00), display_picture : "www.google.com", contact_no : 9808989898, }, role : { type : "super_admin", can_update_post : true, can_delete_post : true, access_to_posts : [],access_to_users : [ObjectId("57ea77bfb3ee130a01beafef"), ObjectId("57ea7830b3ee130a01beaff0")] }, } )
+
+
